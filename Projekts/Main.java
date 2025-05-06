@@ -8,24 +8,21 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         MovieDatabase db = new MovieDatabase();
 
-        System.out.println(ConsoleColors.YELLOW_BOLD + "FILMU INFORMĀCIJAS SISTĒMA" + ConsoleColors.RESET);
-
         while (true) {
-            System.out.println(ConsoleColors.BLUE + "\n1. Pievienot filmu\n2. Skatīt visas filmas\n3. Meklēt pēc nosaukuma\n4. Kārtot pēc gada\n5. Iziet\n6. Meklēt filmu internetā" + ConsoleColors.RESET);
-            System.out.print("Izvēlies darbību: ");
+            printMovieMenu();
             int choice = scanner.nextInt();
             scanner.nextLine();
 
             switch (choice) {
                 case 1:
-                    System.out.print("Nosaukums: ");
+                    System.out.print("Name: ");
                     String title = scanner.nextLine();
-                    System.out.print("Režisors: ");
+                    System.out.print("Director: ");
                     String director = scanner.nextLine();
-                    System.out.print("Gads: ");
+                    System.out.print("Year: ");
                     int year = scanner.nextInt();
                     scanner.nextLine();
-                    System.out.print("Žanrs: ");
+                    System.out.print("Genre: ");
                     String genre = scanner.nextLine();
                     db.addMovie(new Movie(title, director, year, genre));
                     break;
@@ -33,7 +30,7 @@ public class Main {
                     db.displayAll();
                     break;
                 case 3:
-                    System.out.print("Ievadi meklējamo nosaukumu: ");
+                    System.out.print("Input the name of the movie: ");
                     String search = scanner.nextLine();
                     db.searchByTitle(search);
                     break;
@@ -41,16 +38,37 @@ public class Main {
                     db.sortByYear();
                     break;
                 case 5:
-                    System.out.println("Programma tiek izbeigta.");
-                    return;
+                    System.out.print("Movies name (Search on the internet): ");
+                    String apiQuery = scanner.nextLine();
+                    db.fetchMovieFromAPI(apiQuery);
+                    break;
                 case 6:
-                System.out.print("Filmas nosaukums (meklēt internetā): ");
-                String apiQuery = scanner.nextLine();
-                db.fetchMovieFromAPI(apiQuery);
-                break;
+                    System.out.println("Programm ending.");
+                    return;
+                
                 default:
-                    System.out.println("Nepareiza izvēle.");
+                    System.out.println("Wrong input, please try again.");
             }
         }
+    }
+    public static void printMovieMenu() {
+        System.out.println(ConsoleColors.YELLOW_BOLD + "FILM INFORMATION SYSTEM" + ConsoleColors.RESET);
+        System.out.println(ConsoleColors.BLUE + "+----+------------------------------------------+");
+        System.out.println("| Nr | Action                                   |");
+        System.out.println("+----+------------------------------------------+" + ConsoleColors.RESET);
+        System.out.println(ConsoleColors.GREEN +
+            "| 1  | Add Movie                                |\n" +
+            "+----+------------------------------------------+\n" +
+            "| 2  | Look at all of the added movies          |\n" +
+            "+----+------------------------------------------+\n" +
+            "| 3  | Search by name                           |\n" +
+            "+----+------------------------------------------+\n" +
+            "| 4  | Order by year ascending                  |\n" +
+            "+----+------------------------------------------+\n" +
+            "| 5  | Search for a movie on the internet       |\n" +
+            "+----+------------------------------------------+\n" +
+            "| 6  | Leave                                    |\n" + 
+            "+----+------------------------------------------+\n" +ConsoleColors.RESET);
+        System.out.print(ConsoleColors.YELLOW_BOLD + "Choose action: " + ConsoleColors.RESET);
     }
 }

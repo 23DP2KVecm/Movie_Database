@@ -13,35 +13,53 @@ public class MovieDatabase {
 
     public void addMovie(Movie movie) {
         movies.add(movie);
-        System.out.println(ConsoleColors.GREEN + "Filma pievienota!" + ConsoleColors.RESET);
+        System.out.println(ConsoleColors.GREEN + "Film added!" + ConsoleColors.RESET);
+    }
+    private void printTableHeader() {
+        System.out.println(ConsoleColors.BLUE + "+------------------------------+--------------------------------+--------+------------------------------------+");
+        System.out.println("| Name                         | Director                       | Year   | Genre                              |");
+        System.out.println("+------------------------------+--------------------------------+--------+------------------------------------+" + ConsoleColors.RESET);
+    }
+    
+    private void printMovieRow(Movie m) {
+        System.out.println(String.format("| %-28s | %-30s | %-6d | %-34s |",
+            m.getTitle(), m.getDirector(), m.getYear(), m.getGenre()));
     }
 
     public void displayAll() {
         if (movies.isEmpty()) {
-            System.out.println(ConsoleColors.YELLOW + "Nav pievienotu filmu." + ConsoleColors.RESET);
+            System.out.println(ConsoleColors.YELLOW + "No added movies" + ConsoleColors.RESET);
             return;
         }
+        printTableHeader();
         for (Movie m : movies) {
-            System.out.println(ConsoleColors.CYAN_BOLD + m + ConsoleColors.RESET);
+            printMovieRow(m);
         }
+        System.out.println(ConsoleColors.BLUE + "+------------------------------+----------------------+--------+-----------------+" + ConsoleColors.RESET);
     }
 
     public void searchByTitle(String title) {
-        boolean found = false;
+        List<Movie> results = new ArrayList<>();
         for (Movie m : movies) {
             if (m.getTitle().toLowerCase().contains(title.toLowerCase())) {
-                System.out.println(ConsoleColors.CYAN_BOLD + m + ConsoleColors.RESET);
-                found = true;
+                results.add(m);
             }
         }
-        if (!found) {
-            System.out.println(ConsoleColors.RED + "Filma netika atrasta." + ConsoleColors.RESET);
+    
+        if (results.isEmpty()) {
+            System.out.println(ConsoleColors.RED + "Film wasn't found." + ConsoleColors.RESET);
+        } else {
+            printTableHeader();
+            for (Movie m : results) {
+                printMovieRow(m);
+            }
+            System.out.println(ConsoleColors.BLUE + "+------------------------------+----------------------+--------+-----------------+" + ConsoleColors.RESET);
         }
     }
 
     public void sortByYear() {
         movies.sort(Comparator.comparingInt(Movie::getYear));
-        System.out.println(ConsoleColors.GREEN + "Filmas sakārtotas pēc gada!" + ConsoleColors.RESET);
+        System.out.println(ConsoleColors.GREEN + "Films in order by year ascending!" + ConsoleColors.RESET);
     }
 
     public void fetchMovieFromAPI(String title) {
@@ -66,21 +84,25 @@ public class MovieDatabase {
             JSONObject json = new JSONObject(response.toString());
 
             if (json.getString("Response").equalsIgnoreCase("True")) {
-                System.out.println(ConsoleColors.BLUE_BOLD + "\n=== Filmas informācija ===" + ConsoleColors.RESET);
-                System.out.println(ConsoleColors.YELLOW + "Nosaukums: " + ConsoleColors.RESET + json.optString("Title", "Nav datu"));
-                System.out.println(ConsoleColors.YELLOW + "Gads: " + ConsoleColors.RESET + json.optString("Year", "Nav datu"));
-                System.out.println(ConsoleColors.YELLOW + "Režisors: " + ConsoleColors.RESET + json.optString("Director", "Nav datu"));
-                System.out.println(ConsoleColors.YELLOW + "Aktieri: " + ConsoleColors.RESET + json.optString("Actors", "Nav datu"));
-                System.out.println(ConsoleColors.YELLOW + "Žanrs: " + ConsoleColors.RESET + json.optString("Genre", "Nav datu"));
-                System.out.println(ConsoleColors.YELLOW + "Ilgums: " + ConsoleColors.RESET + json.optString("Runtime", "Nav datu"));
-                System.out.println(ConsoleColors.YELLOW + "IMDb vērtējums: " + ConsoleColors.RESET + json.optString("imdbRating", "Nav datu"));
-                System.out.println(ConsoleColors.YELLOW + "Apraksts: " + ConsoleColors.RESET + json.optString("Plot", "Nav datu"));
-            } else {
-                System.out.println(ConsoleColors.RED + "Filma netika atrasta." + ConsoleColors.RESET);
+                System.out.println(ConsoleColors.BLUE_BOLD + "\nFilm info from the internet." + ConsoleColors.RESET);
+                printTableHeader();
+            
+                System.out.println(String.format("| %-28s | %-30s | %-6s | %-34s |",
+                    json.optString("Title", "No data"),
+                    json.optString("Director", "No data"),
+                    json.optString("Year", "No data"),
+                    json.optString("Genre", "No data")));
+            
+                System.out.println(ConsoleColors.BLUE + "+------------------------------+--------------------------------+--------+------------------------------------+" + ConsoleColors.RESET);
+            
+                System.out.println(ConsoleColors.YELLOW + "Actors: " + ConsoleColors.RESET + json.optString("Actors", "Nav datu"));
+                System.out.println(ConsoleColors.YELLOW + "Lenght: " + ConsoleColors.RESET + json.optString("Runtime", "Nav datu"));
+                System.out.println(ConsoleColors.YELLOW + "IMDb rating: " + ConsoleColors.RESET + json.optString("imdbRating", "Nav datu"));
+                System.out.println(ConsoleColors.YELLOW + "Description: " + ConsoleColors.RESET + json.optString("Plot", "Nav datu"));
             }
 
         } catch (Exception e) {
-            System.out.println(ConsoleColors.RED + "Kļūda vaicājot OMDb API: " + e.getMessage() + ConsoleColors.RESET);
+            System.out.println(ConsoleColors.RED + "Error asking OMDb API: " + e.getMessage() + ConsoleColors.RESET);
         }
     }
 }
