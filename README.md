@@ -14,8 +14,8 @@
 
 ### Persistent storage using movies.txt
 
-## User Manual
-### Add a Movie
+# User Manual
+## Add a Movie
 ### Adds a movie to your collection with its title, director, year, and genre. The movie is saved to movies.txt and confirmed with a success message.
 
 ## Fetch Movie from OMDb API
