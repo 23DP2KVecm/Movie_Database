@@ -1,4 +1,8 @@
 # MovieDatabase Application
+
+### To run the code open Visual Studio Code press File in the top left, Open Folder, and choose the folder containing the project.
+### Then download Microsofts Extension Pack for Java and in the top left press Run and then Start Debugging.
+
 ### A simple Java console application to manage a personal movie collection. It supports adding, removing, searching, sorting, and viewing movies, as well as fetching movie information from the OMDb API.
 
 ## Features
@@ -15,26 +19,26 @@
 ### Persistent storage using movies.txt
 
 # User Manual
-## Add a Movie
+## 1. Add a Movie
 ### Adds a movie to your collection with its title, director, year, and genre. The movie is saved to movies.txt and confirmed with a success message.
 
-## Fetch Movie from OMDb API
-### Enter the movie title, and the app will retrieve data from the OMDb API. You will be prompted to confirm whether to add the fetched movie to your list.
-
-## Display All Movies
+## 2.Display All Movies
 ### Prints your entire movie collection in a formatted table. If no movies are present, the app notifies you.
 
-## Sort Movies by Year
+## 3. Search Movies by Title
+### Search your collection by providing part or all of a movie title. Matching results are shown in a formatted table.
+
+## 4./5. Sort Movies by Year
 ### You can sort your movie list:
 
 ### In ascending order (oldest to newest)
 
 ### In descending order (newest to oldest)
 
-## Search Movies by Title
-### Search your collection by providing part or all of a movie title. Matching results are shown in a formatted table.
+## 6. Fetch Movie from OMDb API
+### Enter the movie title, and the app will retrieve data from the OMDb API. You will be prompted to confirm whether to add the fetched movie to your list.
 
-## Remove Movie by Title
+## 7. Remove Movie by Title
 ### Remove a movie by specifying its title. If found, it is deleted from the list and the storage file is updated.
 
 ## OMDb API
