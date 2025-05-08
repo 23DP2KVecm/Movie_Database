@@ -1,17 +1,51 @@
-### How to Use the Program
+# MovieDatabase Application
+### A simple Java console application to manage a personal movie collection. It supports adding, removing, searching, sorting, and viewing movies, as well as fetching movie information from the OMDb API.
 
-This program allows you to manage a collection of movies.
+## Features
+### Add new movies manually or fetch from the internet (OMDb API)
 
-1. **Add Movies**:
-    - Add movies by providing details such as the title, genre and release year.
+### Display all movies in a formatted table
 
-2. **Search for Movies**:
-    - Use the search function and type a name to search in your saved movies.
+### Search movies by title (case-insensitive)
 
-3. **List All Movies**:
-    - Use the list all movies option to show every movie you have saved.
+### Sort movies by release year (ascending or descending)
 
-4. **Remove Movies**:
-    - Use the remove option to remove a movie from your saved list.
+### Remove movies by title
 
-This program is ideal for creating a personal movie catalog.
+### Persistent storage using movies.txt
+
+## User Manual
+### Add a Movie
+### Adds a movie to your collection with its title, director, year, and genre. The movie is saved to movies.txt and confirmed with a success message.
+
+## Fetch Movie from OMDb API
+### Enter the movie title, and the app will retrieve data from the OMDb API. You will be prompted to confirm whether to add the fetched movie to your list.
+
+## Display All Movies
+### Prints your entire movie collection in a formatted table. If no movies are present, the app notifies you.
+
+## Sort Movies by Year
+### You can sort your movie list:
+
+### In ascending order (oldest to newest)
+
+### In descending order (newest to oldest)
+
+## Search Movies by Title
+### Search your collection by providing part or all of a movie title. Matching results are shown in a formatted table.
+
+## Remove Movie by Title
+### Remove a movie by specifying its title. If found, it is deleted from the list and the storage file is updated.
+
+## OMDb API
+### This application fetches online movie data from the OMDb API.
+
+### API key used: ca9f8105 
+
+### Note: For production or public use, store your API key securely and make users use their own keys
+
+## Console Colors
+### The application uses a ConsoleColors utility class to display color-coded messages in the terminal, improving readability and user experience.
+
+## Support
+### This is a simple educational/demo project. Feel free to modify or extend it as needed. Contributions, issues, and suggestions are always welcome.
