@@ -2,3 +2,4 @@ Bullet Train;David Leitch;2022;Action, Comedy, Thriller
 The Intern;Nancy Meyers;2015;Comedy, Drama
 Paddington;Paul King;2014;Adventure, Comedy, Family
 American Psycho;Mary Harron;2000;Crime, Drama, Horror
+Sinners;Aisling Walsh;2002;Drama
