@@ -1,6 +1,7 @@
 {
     "java.project.referencedLibraries": [
         "lib/**/*.jar",
-        "Projekts/lib/json-20250107.jar"
+        "Projekts/lib/json-20250107.jar",
+        "Projekts/lib/junit-jupiter-api-5.13.0-M3.jar"
     ]
 }
